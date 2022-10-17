@@ -1,0 +1,102 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.komrz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "Hoxton.SR6")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation platform('software.amazon.awssdk:bom:2.13.56')
+	implementation 'software.amazon.awssdk:kinesis'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	compile 'org.springframework.boot:spring-boot-starter-log4j2'
+	compileOnly 'org.projectlombok:lombok'
+  	annotationProcessor 'org.projectlombok:lombok'
+
+  	compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-jaxb-annotations', version: '2.11.1'
+  	compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.11.1'
+  	
+  	compile group: 'javax.json.bind', name: 'javax.json.bind-api', version: '1.0'
+  	compile group: 'org.eclipse', name: 'yasson', version: '1.0'
+  	compile group: 'org.glassfish', name: 'javax.json', version: '1.1'
+  	
+  	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+  	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+  	compile group: 'org.springframework.plugin', name: 'spring-plugin-core', version: '1.2.0.RELEASE'
+
+  	compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.327'
+
+  	
+  	// https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa
+	compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.3.1.RELEASE'
+	
+	compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.327'
+	
+	
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.6.RELEASE'
+	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5
+	compile group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.0.11.RELEASE'
+	// https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
+	compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.1'
+	
+	
+	
+	
+	
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+	
+	// https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator
+	compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.5.Final'
+	
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.3.RELEASE'
+	
+	
+  	
+  	
+  	runtimeOnly 'org.postgresql:postgresql'
+  	
+  	configurations {
+	    all {
+	        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	    }
+	}
+	
+  	
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

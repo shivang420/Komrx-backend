@@ -1,0 +1,12 @@
+com.komrz.trackxbackend
+com.komrz.trackxbackend.configuration
+com.komrz.trackxbackend.controller
+com.komrz.trackxbackend.converter
+com.komrz.trackxbackend.dto
+com.komrz.trackxbackend.enumerator
+com.komrz.trackxbackend.exception
+com.komrz.trackxbackend.model
+com.komrz.trackxbackend.repository
+com.komrz.trackxbackend.security
+com.komrz.trackxbackend.service
+com.komrz.trackxbackend.util
